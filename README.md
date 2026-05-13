@@ -87,12 +87,44 @@ AutomationTesting/
 
 ## Quick Start
 
+**Step 1:** Open a terminal and navigate into the project folder:
+```bash
+cd AutomationTesting
+```
+
+**Step 2:** Start all services:
 ```bash
 docker compose up --build
-# web     → http://localhost:3000
-# api     → http://localhost:8000
-# api docs → http://localhost:8000/docs
 ```
+
+Once running, open these in your browser:
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:8000
+- **API Docs (Swagger):** http://localhost:8000/docs
+
+---
+
+### Running WITHOUT Docker (Frontend only — works standalone with mock data)
+
+If you just want to see the UI without Docker:
+
+```bash
+cd AutomationTesting/frontend
+npm install --legacy-peer-deps
+npm run dev
+```
+
+Then open http://localhost:3000 — it runs fully on mock data, no backend needed.
+
+### Running WITHOUT Docker (Backend only)
+
+```bash
+cd AutomationTesting/backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
+```
+
+Then open http://localhost:8000/docs for the Swagger UI.
 
 See [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md), [`docs/DESIGN_SYSTEM.md`](./docs/DESIGN_SYSTEM.md),
 and [`docs/DATABASE_SCHEMA.md`](./docs/DATABASE_SCHEMA.md) for the full design.
